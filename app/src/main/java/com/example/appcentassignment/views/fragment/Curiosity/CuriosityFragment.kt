@@ -16,7 +16,7 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     CuriosityViewModel.View {
 
     private lateinit var binding: FragmentCuriosityBinding
-    private lateinit var imageItemAdapter: ImageItemAdapter
+    private var imageItemAdapter: ImageItemAdapter? = null
     private val curiosityViewModel: CuriosityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +43,8 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
 
         onObserveNewsList()
 
+        imageItemAdapter = ImageItemAdapter(this)
+
         binding.rvImages.adapter = imageItemAdapter
     }
 
@@ -54,7 +56,7 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     private fun onObserveNewsList() {
         curiosityViewModel.itemListData.observe(viewLifecycleOwner) {
             it?.let {
-                imageItemAdapter.setItems(it)
+                imageItemAdapter?.setItems(it)
             }
         }
 
@@ -78,5 +80,4 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     override fun dismissProgressBar() {
         progressDialog.dismiss()
     }
-
 }
