@@ -65,4 +65,11 @@ dependencies {
 
     // Koin AndroidX Scope features for DI
     implementation "org.koin:koin-androidx-scope:2.1.6"
+
+    //Retrofit Dependencies
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:4.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
 }
