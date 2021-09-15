@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : BaseFragment() {
 
-    lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private val adapter =
         TabAdapter(MainActivity().supportFragmentManager, binding.tabLayout.tabCount)
 
@@ -32,6 +32,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         with(binding) {
             tabLayout.addTab(tabLayout.newTab().setText("Curiosity"))
             tabLayout.addTab(tabLayout.newTab().setText("Opportunity"))
