@@ -10,9 +10,9 @@ import retrofit2.http.Query
  */
 interface ApiInterface {
 
-    @GET("everything")
+    @GET("curiosity/photos")
     fun getItems(
-        @Query("q") keyword: String, @Query("page") page: String,
+        @Query("sol") keyword: String,
         @Query("apiKey") apiKey: String,
     ): Call<ItemResponse>
 }

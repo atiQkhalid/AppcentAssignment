@@ -1,6 +1,7 @@
 package com.example.appcentassignment.di
 
 import android.content.Context
+import com.example.appcentassignment.repository.ItemRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -18,7 +19,7 @@ object DIFramework {
             // declare used Android context
             androidContext(context)
             val repoModule = module {
-                // single
+                single { ItemRepository.getInstance() }
             }
             // declare modules
             modules(repoModule)

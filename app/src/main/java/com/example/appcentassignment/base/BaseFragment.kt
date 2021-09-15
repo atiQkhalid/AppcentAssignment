@@ -13,8 +13,8 @@ import org.koin.java.KoinJavaComponent
 abstract class BaseFragment : Fragment() {
 
     protected lateinit var mainActivity: MainActivity
-    private lateinit var progressDialog: KProgressHUD
-    protected val prefManager: PrefManager by KoinJavaComponent.inject(PrefManager::class.java)
+    lateinit var progressDialog: KProgressHUD
+//    protected val prefManager: PrefManager by KoinJavaComponent.inject(PrefManager::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
