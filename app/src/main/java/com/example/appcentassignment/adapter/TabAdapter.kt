@@ -8,8 +8,12 @@ import com.example.appcentassignment.views.fragment.Curiosity.CuriosityFragment
 import com.example.appcentassignment.views.fragment.Opportunity.OpportunityFragment
 import com.example.appcentassignment.views.fragment.Spirit.SpiritFragment
 
-internal class TabAdapter(fm: FragmentManager, private val fragmentCount: Int)
-    : FragmentPagerAdapter(fm) {
+@Suppress("DEPRECATION")
+internal class TabAdapter(
+    fm: FragmentManager,
+    var fragmentCount: Int
+) :
+    FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {

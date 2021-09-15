@@ -65,5 +65,4 @@ dependencies {
 
     // Koin AndroidX Scope features for DI
     implementation "org.koin:koin-androidx-scope:2.1.6"
-
 }
