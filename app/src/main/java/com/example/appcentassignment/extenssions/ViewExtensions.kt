@@ -3,8 +3,10 @@ package com.example.appcentassignment.extenssions
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.appcentassignment.App
+import java.lang.System.load
 
 /**
  * Extension function to show toast message
@@ -25,6 +27,14 @@ fun View.visible() {
  */
 fun View.gone() {
     visibility = View.GONE
+}
+
+/**
+ * An Extension to LoadImage
+ * @return void
+ */
+fun ImageView.loadImage(url: String?) {
+    load(url)
 }
 
 /**
