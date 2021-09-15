@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.appcentassignment.adapter.TabAdapter
 import com.example.appcentassignment.base.BaseFragment
 import com.example.appcentassignment.databinding.FragmentHomeBinding
+import com.example.appcentassignment.views.activities.MainActivity
+import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    lateinit var binding: FragmentHomeBinding
+    private val adapter =
+        TabAdapter(MainActivity().supportFragmentManager, binding.tabLayout.tabCount)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +24,7 @@ class HomeFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -28,7 +33,22 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            tv.text = "HomeFragment"
+            tabLayout.addTab(tabLayout.newTab().setText("Curiosity"))
+            tabLayout.addTab(tabLayout.newTab().setText("Opportunity"))
+            tabLayout.addTab(tabLayout.newTab().setText("Spirit"))
+            tabLayout.tabGravity = TabLayout.GRAVITY_FILL
+
+            viewPager.adapter = adapter
+            viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
+                    viewPager.currentItem = tab.position
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab) {}
+                override fun onTabReselected(tab: TabLayout.Tab) {}
+            })
         }
     }
 }
