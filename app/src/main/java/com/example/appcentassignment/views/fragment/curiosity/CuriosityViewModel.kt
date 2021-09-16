@@ -1,16 +1,13 @@
-package com.example.appcentassignment.views.fragment.Curiosity
+package com.example.appcentassignment.views.fragment.curiosity
 
 import androidx.lifecycle.MutableLiveData
 import com.example.appcentassignment.base.BaseViewModel
 import com.example.appcentassignment.models.response.ItemResponse
 import com.example.appcentassignment.models.response.Photo
 import com.example.appcentassignment.utils.Constants.API_KEY
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.coroutines.CoroutineContext
 
 class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
 

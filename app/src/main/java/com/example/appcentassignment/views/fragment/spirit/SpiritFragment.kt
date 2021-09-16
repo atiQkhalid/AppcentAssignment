@@ -1,4 +1,4 @@
-package com.example.appcentassignment.views.fragment.Curiosity
+package com.example.appcentassignment.views.fragment.spirit
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,16 +8,17 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.appcentassignment.adapter.ImageItemAdapter
 import com.example.appcentassignment.base.BaseFragment
-import com.example.appcentassignment.databinding.FragmentCuriosityBinding
+import com.example.appcentassignment.databinding.FragmentRecyclerviewBinding
 import com.example.appcentassignment.extenssions.showToastMsg
 import com.example.appcentassignment.models.response.Photo
 
-class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
-    CuriosityViewModel.View {
 
-    private lateinit var binding: FragmentCuriosityBinding
+class SpiritFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
+    SpiritViewModel.View {
+
+    private lateinit var binding: FragmentRecyclerviewBinding
     private var imageItemAdapter: ImageItemAdapter? = null
-    private val curiosityViewModel: CuriosityViewModel by viewModels()
+    private val spiritViewModel: SpiritViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +30,16 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentCuriosityBinding.inflate(inflater, container, false)
+        binding = FragmentRecyclerviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        curiosityViewModel.let {
+        spiritViewModel.let {
             it.attachView(this)
-            it.getCuriosityItemList()
+            it.getSpiritItemList()
         }
 
         onObserveNewsList()
@@ -58,7 +59,7 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
 
     //once we get the data from repo, populate it with the help of the adapter, NewsAdapter()
     private fun onObserveNewsList() {
-        curiosityViewModel.itemList.observe(viewLifecycleOwner) {
+        spiritViewModel.itemList.observe(viewLifecycleOwner) {
             it?.let {
                 imageItemAdapter?.setItems(it)
             }

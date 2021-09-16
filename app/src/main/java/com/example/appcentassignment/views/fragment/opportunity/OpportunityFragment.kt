@@ -1,4 +1,4 @@
-package com.example.appcentassignment.views.fragment.Opportunity
+package com.example.appcentassignment.views.fragment.opportunity
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.appcentassignment.adapter.ImageItemAdapter
 import com.example.appcentassignment.base.BaseFragment
-import com.example.appcentassignment.databinding.FragmentOpportunityBinding
+import com.example.appcentassignment.databinding.FragmentRecyclerviewBinding
 import com.example.appcentassignment.extenssions.showToastMsg
 import com.example.appcentassignment.models.response.Photo
 
 class OpportunityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     OpportunityViewModel.View {
 
-    private lateinit var binding: FragmentOpportunityBinding
+    private lateinit var binding: FragmentRecyclerviewBinding
     private var imageItemAdapter: ImageItemAdapter? = null
     private val opportunityViewModel: OpportunityViewModel by viewModels()
 
@@ -29,7 +29,7 @@ class OpportunityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentOpportunityBinding.inflate(inflater, container, false)
+        binding = FragmentRecyclerviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 

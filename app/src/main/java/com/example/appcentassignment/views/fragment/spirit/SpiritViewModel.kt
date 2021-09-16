@@ -1,24 +1,21 @@
-package com.example.appcentassignment.views.fragment.Opportunity
+package com.example.appcentassignment.views.fragment.spirit
 
 import androidx.lifecycle.MutableLiveData
 import com.example.appcentassignment.base.BaseViewModel
 import com.example.appcentassignment.models.response.ItemResponse
 import com.example.appcentassignment.models.response.Photo
-import com.example.appcentassignment.utils.Constants.API_KEY
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.example.appcentassignment.utils.Constants
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.coroutines.CoroutineContext
 
-class OpportunityViewModel : BaseViewModel<OpportunityViewModel.View>() {
+class SpiritViewModel : BaseViewModel<SpiritViewModel.View>() {
 
     val itemList = MutableLiveData<List<Photo>>()
 
-    fun getOpportunityItemList() {
+    fun getSpiritItemList() {
         getView().showProgressBar()
-        itemRepository.getItemList(keyword = "opportunity", apiKey = API_KEY)
+        itemRepository.getItemList(keyword = "spirit", apiKey = Constants.API_KEY)
             .enqueue(object : Callback<ItemResponse> {
                 override fun onResponse(
                     call: Call<ItemResponse>,

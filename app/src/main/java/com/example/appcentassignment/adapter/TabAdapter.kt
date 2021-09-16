@@ -1,12 +1,11 @@
 package com.example.appcentassignment.adapter
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.appcentassignment.views.fragment.Curiosity.CuriosityFragment
-import com.example.appcentassignment.views.fragment.Opportunity.OpportunityFragment
-import com.example.appcentassignment.views.fragment.Spirit.SpiritFragment
+import com.example.appcentassignment.views.fragment.curiosity.CuriosityFragment
+import com.example.appcentassignment.views.fragment.opportunity.OpportunityFragment
+import com.example.appcentassignment.views.fragment.spirit.SpiritFragment
 
 @Suppress("DEPRECATION")
 internal class TabAdapter(
