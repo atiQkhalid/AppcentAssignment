@@ -1,8 +1,6 @@
 package com.example.appcentassignment.views.fragment.Curiosity
 
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import com.example.appcentassignment.base.BaseViewModel
 import com.example.appcentassignment.models.response.ItemResponse
 import com.example.appcentassignment.models.response.Photo
@@ -12,18 +10,13 @@ import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>(), CoroutineScope {
+class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
 
-    private val itemList = MutableLiveData<List<Photo>>()
+    val itemList = MutableLiveData<List<Photo>>()
 
-    val itemListData = MediatorLiveData<List<Photo>>().apply {
-        addSource(itemList) { value -> this.setValue(value) }
-    }
-
-    fun getICuriosityItemLists() {
+    fun getCuriosityItemList() {
         getView().showProgressBar()
         itemRepository.getItemList(keyword = "curiosity", apiKey = API_KEY)
             .enqueue(object : Callback<ItemResponse> {
@@ -34,10 +27,8 @@ class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>(), CoroutineSc
                     getView().dismissProgressBar()
                     response.run {
                         if (isSuccessful) {
-                            body()?.run {
-                                this.photos.let {
-                                    itemList.value = it
-                                }
+                            body()?.photos?.let {
+                                itemList.value = it
                             } ?: getView().onUpdateResponse("Something went wrong")
                         }
                     }
@@ -55,7 +46,4 @@ class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>(), CoroutineSc
         fun showProgressBar()
         fun dismissProgressBar()
     }
-
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
 }

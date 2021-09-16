@@ -38,14 +38,18 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
 
         curiosityViewModel.let {
             it.attachView(this)
-            it.getICuriosityItemLists()
+            it.getCuriosityItemList()
         }
 
         onObserveNewsList()
 
         imageItemAdapter = ImageItemAdapter(this)
-
-        binding.rvImages.adapter = imageItemAdapter
+        imageItemAdapter.let {
+            binding.rvImages.apply {
+                itemAnimator = DefaultItemAnimator()
+                adapter = it
+            }
+        }
     }
 
     override fun clickListener(photo: Photo) {
@@ -54,18 +58,10 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
 
     //once we get the data from repo, populate it with the help of the adapter, NewsAdapter()
     private fun onObserveNewsList() {
-        curiosityViewModel.itemListData.observe(viewLifecycleOwner) {
+        curiosityViewModel.itemList.observe(viewLifecycleOwner) {
             it?.let {
                 imageItemAdapter?.setItems(it)
             }
-        }
-
-        imageItemAdapter.let {
-            binding.rvImages.apply {
-                itemAnimator = DefaultItemAnimator()
-                adapter = it
-            }
-            it?.notifyDataSetChanged()
         }
     }
 

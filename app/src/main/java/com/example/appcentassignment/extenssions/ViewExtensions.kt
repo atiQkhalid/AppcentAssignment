@@ -1,12 +1,11 @@
 package com.example.appcentassignment.extenssions
 
-import android.content.Context
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.appcentassignment.App
-import java.lang.System.load
+import com.example.appcentassignment.R
 
 /**
  * Extension function to show toast message
@@ -34,14 +33,6 @@ fun View.gone() {
  * @return void
  */
 fun ImageView.loadImage(url: String?) {
-    load(url)
-}
-
-/**
- * An Extension to close keyboard.
- */
-fun View.closeKeyboard() {
-    val inputMethodManager =
-        this.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
+    url ?: return
+    Glide.with(this).load(url).placeholder(R.drawable.ic_launcher_background).into(this)
 }

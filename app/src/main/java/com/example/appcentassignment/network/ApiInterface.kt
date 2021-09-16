@@ -3,6 +3,7 @@ package com.example.appcentassignment.network
 import com.example.appcentassignment.models.response.ItemResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -10,9 +11,11 @@ import retrofit2.http.Query
  */
 interface ApiInterface {
 
-    @GET("curiosity/photos")
+    @GET("{imageKeyword}/photos")
     fun getItems(
-        @Query("sol") keyword: String,
-        @Query("apiKey") apiKey: String,
+        @Path("imageKeyword") imageKeyword: String,
+        @Query("sol") itemCount: Int = 100,
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int = 1,
     ): Call<ItemResponse>
 }

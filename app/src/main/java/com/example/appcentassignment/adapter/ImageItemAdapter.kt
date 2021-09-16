@@ -15,19 +15,19 @@ class ImageItemAdapter(private val onItemClickListener: OnItemClickListener) :
     private val imageItemList: ArrayList<Photo> = ArrayList()
 
     fun setItems(list: List<Photo>) {
-        list.apply {
-            imageItemList.clear()
-            imageItemList.addAll(this)
-            notifyDataSetChanged()
-        }
+        imageItemList.clear()
+        imageItemList.addAll(list)
+        notifyDataSetChanged()
     }
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var image = view.findViewById(R.id.image_item) as ImageView
-
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageItemAdapter.MyViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ImageItemAdapter.MyViewHolder {
         return MyViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_list, parent, false)
@@ -49,5 +49,4 @@ class ImageItemAdapter(private val onItemClickListener: OnItemClickListener) :
     interface OnItemClickListener {
         fun clickListener(photo: Photo)
     }
-
 }

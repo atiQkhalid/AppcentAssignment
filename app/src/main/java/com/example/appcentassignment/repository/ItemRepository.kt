@@ -15,7 +15,7 @@ class ItemRepository : BaseRepository(), CoroutineScope {
     fun getItemList(keyword: String, apiKey: String) =
         RetrofitClient.getInterfaceService(
             BASE_URL
-        ).getItems(keyword, apiKey)
+        ).getItems(imageKeyword = keyword, apiKey = apiKey)
 
     companion object {
         private var instance: ItemRepository? = null
