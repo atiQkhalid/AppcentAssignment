@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/curiosityFragment"
+            android:checked="true"
+            android:title="@string/curiosity" />
+        <item
+            android:id="@+id/opportunityFragment"
+            android:checked="false"
+            android:title="@string/opportunity" />
+        <item
+            android:id="@+id/spiritFragment"
+            android:checked="false"
+            android:title="@string/spirit" />
+    </group>
+</menu>

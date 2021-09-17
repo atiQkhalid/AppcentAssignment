@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.appcentassignment.adapter.ImageItemAdapter
 import com.example.appcentassignment.base.BaseFragment
 import com.example.appcentassignment.databinding.FragmentRecyclerviewBinding
 import com.example.appcentassignment.extenssions.showToastMsg
+import com.example.appcentassignment.models.response.Camera
 import com.example.appcentassignment.models.response.Photo
 
 class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
@@ -42,6 +44,9 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
         }
 
         onObserveNewsList()
+
+        val cameraList: List<Camera> = ArrayList<Camera>()
+        curiosityViewModel.getCuriosityItemList()
 
         imageItemAdapter = ImageItemAdapter(this)
         imageItemAdapter.let {

@@ -1,6 +1,7 @@
 package com.example.appcentassignment.extenssions
 
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.AnimRes
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
@@ -42,6 +43,23 @@ fun Fragment.replaceFragment(
         transaction.addToBackStack(null)
     }
     transaction.replace(R.id.container, fragment, fragment.javaClass.name)
+    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+    fragment.arguments = bundle
+    transaction.commit()
+}
+
+fun Fragment.replaceFragmentInFragment(
+    container: View,
+    fragment: Fragment,
+    addToBackStack: Boolean = true,
+    bundle: Bundle? = null
+) {
+    val transaction =
+        this.parentFragmentManager.beginTransaction()
+    if (addToBackStack) {
+        transaction.addToBackStack(null)
+    }
+    transaction.replace(container.id, fragment, fragment.javaClass.name)
     transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
     fragment.arguments = bundle
     transaction.commit()
