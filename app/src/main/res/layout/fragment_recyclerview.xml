@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="top">
 
     <TextView
         android:id="@+id/fragment_title"
@@ -15,14 +16,16 @@
         android:layout_marginTop="@dimen/d30p"
         android:textColor="@color/primary"
         android:textStyle="bold"
-        android:textSize="@dimen/d15p"
+        android:textSize="18dp"
         tools:ignore="SpUsage" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:paddingStart="@dimen/d10p"
-        android:paddingEnd="@dimen/d10p">
+        android:paddingEnd="@dimen/d10p"
+        android:layout_gravity="top"
+        android:gravity="top">
 
         <TextView
             android:layout_width="wrap_content"
