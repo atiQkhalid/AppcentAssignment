@@ -14,6 +14,8 @@ import com.example.appcentassignment.extenssions.showToastMsg
 import com.example.appcentassignment.models.response.Photo
 import android.widget.ArrayAdapter
 import com.example.appcentassignment.utils.DialogUtils
+import android.widget.AdapterView
+
 
 class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     CuriosityViewModel.View {
@@ -39,7 +41,7 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        imageItemAdapter = ImageItemAdapter(this)
         binding.fragmentTitle.text = "Curiosity"
 
         curiosityViewModel.let {
@@ -51,16 +53,23 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
 
 
         curiosityViewModel.getCuriosityItemList()
+        binding.spItem.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
 
-        imageItemAdapter = ImageItemAdapter(this)
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val spinnerSelectedItem = curiosityViewModel.cameraList.value?.get(position).toString()
+                curiosityViewModel.onSearchCamera(spinnerSelectedItem)
+            }
+
+        }
         imageItemAdapter.let {
             binding.rvImages.apply {
                 itemAnimator = DefaultItemAnimator()
                 adapter = it
             }
         }
-
-
     }
 
     override fun clickListener(photo: Photo) {
@@ -88,6 +97,12 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
                     R.layout.simple_spinner_dropdown_item
                 )
                 binding.spItem.adapter = spinnerAdapter
+            }
+        }
+
+        curiosityViewModel.cameraListData.observe(requireActivity()){
+            it.let {
+                imageItemAdapter?.setItems(it)
             }
         }
     }

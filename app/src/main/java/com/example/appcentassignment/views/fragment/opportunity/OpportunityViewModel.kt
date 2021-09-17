@@ -1,6 +1,8 @@
 package com.example.appcentassignment.views.fragment.opportunity
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.example.appcentassignment.base.BaseViewModel
 import com.example.appcentassignment.models.response.ItemResponse
 import com.example.appcentassignment.models.response.Photo
@@ -15,6 +17,29 @@ class OpportunityViewModel : BaseViewModel<OpportunityViewModel.View>() {
     private val photos = ArrayList<Photo>()
     val cameraList = MutableLiveData<List<String>>()
     private val camHasMap = HashMap<String, String>()
+    private val selectedCamera = MutableLiveData<String>()
+
+
+    private val filteredData = Transformations.switchMap(selectedCamera) { filterable ->
+        Transformations.map(photoItemList) { list ->
+            if (filterable.isNullOrEmpty().not()) {
+                list.filter {
+                    it.camera.full_name.contains(filterable)
+                }
+            }
+            else
+                list
+        }
+    }
+
+    val cameraListData = MediatorLiveData<List<Photo>>().apply {
+        addSource(photoItemList) { value -> this.setValue(value) }
+        addSource(filteredData) { value -> this.setValue(value) }
+    }
+
+    fun onSearchCamera(query: String) {
+        selectedCamera.value = query
+    }
 
     fun getOpportunityItemList() {
         getView().showProgressBar()
@@ -35,7 +60,6 @@ class OpportunityViewModel : BaseViewModel<OpportunityViewModel.View>() {
                             photos.forEach {
                                 camHasMap[it.camera.name] = it.camera.full_name
                             }
-                            val keyList = ArrayList(camHasMap.keys)
                             val valueList = ArrayList(camHasMap.values)
                             cameraList.value = valueList
                         }
