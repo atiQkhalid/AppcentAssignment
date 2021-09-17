@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="image_item_size">180dp</dimen>
-    <dimen name="ten_dp">10dp</dimen>
+    <dimen name="d10p">10dp</dimen>
+    <dimen name="d15p">15dp</dimen>
+    <dimen name="d20p">20dp</dimen>
+    <dimen name="d25p">25dp</dimen>
+    <dimen name="d30p">30dp</dimen>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.appcentassignment.views.fragment.curiosity
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,9 @@ import com.example.appcentassignment.base.BaseFragment
 import com.example.appcentassignment.databinding.FragmentRecyclerviewBinding
 import com.example.appcentassignment.extenssions.showToastMsg
 import com.example.appcentassignment.models.response.Photo
+import android.widget.ArrayAdapter
+import java.text.AttributedString
+
 
 class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     CuriosityViewModel.View {
@@ -18,6 +22,7 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     private lateinit var binding: FragmentRecyclerviewBinding
     private var imageItemAdapter: ImageItemAdapter? = null
     private val curiosityViewModel: CuriosityViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,9 +68,23 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
 
     //once we get the data from repo, populate it with the help of the adapter, NewsAdapter()
     private fun onObserveItemList() {
-        curiosityViewModel.itemList.observe(viewLifecycleOwner) {
+        curiosityViewModel.photoItemList.observe(viewLifecycleOwner) {
             it?.let {
                 imageItemAdapter?.setItems(it)
+            }
+        }
+
+        curiosityViewModel.cameraList.observe(viewLifecycleOwner) {
+            it?.let {
+                val spinnerAdapter = ArrayAdapter(
+                    mainActivity,R.layout.simple_spinner_item, it
+                )
+
+                spinnerAdapter.setDropDownViewResource(
+                    R.layout.simple_spinner_dropdown_item
+                )
+
+                binding.spItem.adapter = spinnerAdapter
             }
         }
     }

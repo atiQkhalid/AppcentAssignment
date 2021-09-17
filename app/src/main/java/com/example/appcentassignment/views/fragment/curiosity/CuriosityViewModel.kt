@@ -12,8 +12,10 @@ import retrofit2.Response
 
 class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
 
-    val itemList = MutableLiveData<List<Photo>>()
-    val photo = ArrayList<Photo>()
+    val photoItemList = MutableLiveData<List<Photo>>()
+    private val photos = ArrayList<Photo>()
+    val cameraList = MutableLiveData<List<String>>()
+    private val camHasMap = HashMap<String, String>()
 
     fun getCuriosityItemList() {
         getView().showProgressBar()
@@ -27,9 +29,16 @@ class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
                     response.run {
                         if (isSuccessful) {
                             body()?.photos?.let {
-                                itemList.value = it
-                                photo.addAll(it)
+                                photos.addAll(it)
+                                photoItemList.value = it
                             } ?: getView().onUpdateResponse("Something went wrong")
+
+                            photos.forEach {
+                                camHasMap[it.camera.name] = it.camera.full_name
+                            }
+                            val keyList = ArrayList(camHasMap.keys)
+                            val valueList = ArrayList(camHasMap.values)
+                            cameraList.value = keyList
                         }
                     }
                 }

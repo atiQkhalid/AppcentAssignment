@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/app_name"
-        android:padding="@dimen/ten_dp"
+        android:padding="@dimen/d10p"
         android:src="@drawable/ic_launcher_background" />
 
 </LinearLayout>
