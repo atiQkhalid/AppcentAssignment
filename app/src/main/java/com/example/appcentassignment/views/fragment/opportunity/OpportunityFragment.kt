@@ -1,18 +1,19 @@
 package com.example.appcentassignment.views.fragment.opportunity
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.R
-import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
+import com.example.appcentassignment.R
 import com.example.appcentassignment.adapter.ImageItemAdapter
 import com.example.appcentassignment.base.BaseFragment
 import com.example.appcentassignment.databinding.FragmentRecyclerviewBinding
 import com.example.appcentassignment.extenssions.showToastMsg
 import com.example.appcentassignment.models.response.Photo
+import com.example.appcentassignment.utils.DialogUtils.Companion.showPopup
 
 class OpportunityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     OpportunityViewModel.View {
@@ -57,7 +58,7 @@ class OpportunityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener
     }
 
     override fun clickListener(photo: Photo) {
-        showToastMsg(photo.img_src)
+        showPopup(photo, this.layoutInflater.inflate(R.layout.popup, null))
     }
 
     //once we get the data from repo, populate it with the help of the adapter, NewsAdapter()
@@ -71,11 +72,12 @@ class OpportunityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener
         opportunityViewModel.cameraList.observe(viewLifecycleOwner) {
             it?.let {
                 val spinnerAdapter = ArrayAdapter(
-                    mainActivity, R.layout.simple_spinner_item, it
+                    mainActivity, android.R.layout.simple_spinner_item, it
+
                 )
 
                 spinnerAdapter.setDropDownViewResource(
-                    R.layout.simple_spinner_dropdown_item
+                    android.R.layout.simple_spinner_dropdown_item
                 )
                 binding.spItem.adapter = spinnerAdapter
             }

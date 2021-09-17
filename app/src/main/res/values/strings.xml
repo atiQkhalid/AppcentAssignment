@@ -7,4 +7,10 @@
     <string name="opportunity">Opportunity</string>
     <string name="spirit">Spirit</string>
     <string name="select_camera">Select camera</string>
+    <string name="date_of_photo">Date of photo</string>
+    <string name="car_name">Car name</string>
+    <string name="camra_name">Camra name</string>
+    <string name="mission_status">Mission status</string>
+    <string name="date_of_launch">Date of launch</string>
+    <string name="landofcard">date of landing</string>
 </resources>

@@ -13,6 +13,7 @@ import com.example.appcentassignment.base.BaseFragment
 import com.example.appcentassignment.databinding.FragmentRecyclerviewBinding
 import com.example.appcentassignment.extenssions.showToastMsg
 import com.example.appcentassignment.models.response.Photo
+import com.example.appcentassignment.utils.DialogUtils
 
 
 class SpiritFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
@@ -58,7 +59,10 @@ class SpiritFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     }
 
     override fun clickListener(photo: Photo) {
-        showToastMsg(photo.img_src)
+        DialogUtils.showPopup(
+            photo,
+            this.layoutInflater.inflate(com.example.appcentassignment.R.layout.popup, null)
+        )
     }
 
     //once we get the data from repo, populate it with the help of the adapter, NewsAdapter()

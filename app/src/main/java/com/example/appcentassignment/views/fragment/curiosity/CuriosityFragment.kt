@@ -13,6 +13,7 @@ import com.example.appcentassignment.databinding.FragmentRecyclerviewBinding
 import com.example.appcentassignment.extenssions.showToastMsg
 import com.example.appcentassignment.models.response.Photo
 import android.widget.ArrayAdapter
+import com.example.appcentassignment.utils.DialogUtils
 
 class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     CuriosityViewModel.View {
@@ -63,7 +64,10 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     }
 
     override fun clickListener(photo: Photo) {
-        showToastMsg(photo.img_src)
+        DialogUtils.showPopup(
+            photo,
+            this.layoutInflater.inflate(com.example.appcentassignment.R.layout.popup, null)
+        )
     }
 
     //once we get the data from repo, populate it with the help of the adapter, NewsAdapter()
