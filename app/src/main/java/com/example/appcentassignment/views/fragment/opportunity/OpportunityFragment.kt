@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -49,6 +50,17 @@ class OpportunityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener
         onObserveNewsList()
 
         imageItemAdapter = ImageItemAdapter(this)
+        binding.spItem.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val spinnerSelectedItem = opportunityViewModel.cameraList.value?.get(position).toString()
+                opportunityViewModel.onSearchCamera(spinnerSelectedItem)
+            }
+
+        }
         imageItemAdapter.let {
             binding.rvImages.apply {
                 itemAnimator = DefaultItemAnimator()
@@ -80,6 +92,12 @@ class OpportunityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener
                     android.R.layout.simple_spinner_dropdown_item
                 )
                 binding.spItem.adapter = spinnerAdapter
+            }
+        }
+
+        opportunityViewModel.cameraListData.observe(requireActivity()){
+            it.let {
+                imageItemAdapter?.setItems(it)
             }
         }
     }
