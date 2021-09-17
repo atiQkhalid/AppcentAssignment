@@ -2,6 +2,7 @@ package com.example.appcentassignment.views.fragment.curiosity
 
 import androidx.lifecycle.MutableLiveData
 import com.example.appcentassignment.base.BaseViewModel
+import com.example.appcentassignment.models.response.Camera
 import com.example.appcentassignment.models.response.ItemResponse
 import com.example.appcentassignment.models.response.Photo
 import com.example.appcentassignment.utils.Constants.API_KEY
@@ -12,6 +13,7 @@ import retrofit2.Response
 class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
 
     val itemList = MutableLiveData<List<Photo>>()
+    val photo = ArrayList<Photo>()
 
     fun getCuriosityItemList() {
         getView().showProgressBar()
@@ -26,6 +28,7 @@ class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
                         if (isSuccessful) {
                             body()?.photos?.let {
                                 itemList.value = it
+                                photo.addAll(it)
                             } ?: getView().onUpdateResponse("Something went wrong")
                         }
                     }

@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.appcentassignment.adapter.ImageItemAdapter
 import com.example.appcentassignment.base.BaseFragment
 import com.example.appcentassignment.databinding.FragmentRecyclerviewBinding
 import com.example.appcentassignment.extenssions.showToastMsg
-import com.example.appcentassignment.models.response.Camera
 import com.example.appcentassignment.models.response.Photo
 
 class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
@@ -41,11 +39,11 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
         curiosityViewModel.let {
             it.attachView(this)
             it.getCuriosityItemList()
-        }
+            }
 
-        onObserveNewsList()
+        onObserveItemList()
 
-        val cameraList: List<Camera> = ArrayList<Camera>()
+
         curiosityViewModel.getCuriosityItemList()
 
         imageItemAdapter = ImageItemAdapter(this)
@@ -55,6 +53,8 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
                 adapter = it
             }
         }
+
+
     }
 
     override fun clickListener(photo: Photo) {
@@ -62,7 +62,7 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     }
 
     //once we get the data from repo, populate it with the help of the adapter, NewsAdapter()
-    private fun onObserveNewsList() {
+    private fun onObserveItemList() {
         curiosityViewModel.itemList.observe(viewLifecycleOwner) {
             it?.let {
                 imageItemAdapter?.setItems(it)
