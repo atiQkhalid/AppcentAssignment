@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.R
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.appcentassignment.adapter.ImageItemAdapter
@@ -37,6 +39,8 @@ class SpiritFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.fragmentTitle.text = "Spirit"
+
         spiritViewModel.let {
             it.attachView(this)
             it.getSpiritItemList()
@@ -59,9 +63,22 @@ class SpiritFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
 
     //once we get the data from repo, populate it with the help of the adapter, NewsAdapter()
     private fun onObserveNewsList() {
-        spiritViewModel.itemList.observe(viewLifecycleOwner) {
+        spiritViewModel.photoItemList.observe(viewLifecycleOwner) {
             it?.let {
                 imageItemAdapter?.setItems(it)
+            }
+        }
+
+        spiritViewModel.cameraList.observe(viewLifecycleOwner) {
+            it?.let {
+                val spinnerAdapter = ArrayAdapter(
+                    mainActivity, R.layout.simple_spinner_item, it
+                )
+
+                spinnerAdapter.setDropDownViewResource(
+                    R.layout.simple_spinner_dropdown_item
+                )
+                binding.spItem.adapter = spinnerAdapter
             }
         }
     }

@@ -13,8 +13,6 @@ import com.example.appcentassignment.databinding.FragmentRecyclerviewBinding
 import com.example.appcentassignment.extenssions.showToastMsg
 import com.example.appcentassignment.models.response.Photo
 import android.widget.ArrayAdapter
-import java.text.AttributedString
-
 
 class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     CuriosityViewModel.View {
@@ -40,6 +38,8 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.fragmentTitle.text = "Curiosity"
 
         curiosityViewModel.let {
             it.attachView(this)
@@ -83,7 +83,6 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
                 spinnerAdapter.setDropDownViewResource(
                     R.layout.simple_spinner_dropdown_item
                 )
-
                 binding.spItem.adapter = spinnerAdapter
             }
         }

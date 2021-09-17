@@ -11,7 +11,10 @@ import retrofit2.Response
 
 class OpportunityViewModel : BaseViewModel<OpportunityViewModel.View>() {
 
-    val itemList = MutableLiveData<List<Photo>>()
+    val photoItemList = MutableLiveData<List<Photo>>()
+    private val photos = ArrayList<Photo>()
+    val cameraList = MutableLiveData<List<String>>()
+    private val camHasMap = HashMap<String, String>()
 
     fun getOpportunityItemList() {
         getView().showProgressBar()
@@ -25,8 +28,16 @@ class OpportunityViewModel : BaseViewModel<OpportunityViewModel.View>() {
                     response.run {
                         if (isSuccessful) {
                             body()?.photos?.let {
-                                itemList.value = it
+                                photos.addAll(it)
+                                photoItemList.value = it
                             } ?: getView().onUpdateResponse("Something went wrong")
+
+                            photos.forEach {
+                                camHasMap[it.camera.name] = it.camera.full_name
+                            }
+                            val keyList = ArrayList(camHasMap.keys)
+                            val valueList = ArrayList(camHasMap.values)
+                            cameraList.value = valueList
                         }
                     }
                 }

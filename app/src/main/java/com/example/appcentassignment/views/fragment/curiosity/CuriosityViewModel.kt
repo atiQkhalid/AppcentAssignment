@@ -2,7 +2,6 @@ package com.example.appcentassignment.views.fragment.curiosity
 
 import androidx.lifecycle.MutableLiveData
 import com.example.appcentassignment.base.BaseViewModel
-import com.example.appcentassignment.models.response.Camera
 import com.example.appcentassignment.models.response.ItemResponse
 import com.example.appcentassignment.models.response.Photo
 import com.example.appcentassignment.utils.Constants.API_KEY
@@ -38,7 +37,7 @@ class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
                             }
                             val keyList = ArrayList(camHasMap.keys)
                             val valueList = ArrayList(camHasMap.values)
-                            cameraList.value = keyList
+                            cameraList.value = valueList
                         }
                     }
                 }
