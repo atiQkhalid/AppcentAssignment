@@ -3,11 +3,9 @@ package com.example.appcentassignment.utils
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.appcentassignment.R
 import com.example.appcentassignment.extenssions.loadImage
 import com.example.appcentassignment.models.response.Photo
@@ -20,7 +18,11 @@ class DialogUtils {
             return showProgressDialog(context, "")
         }
 
-        fun showProgressDialog(context: Context, message: String = "please wait", cancelable: Boolean = false): KProgressHUD {
+        fun showProgressDialog(
+            context: Context,
+            message: String = "please wait",
+            cancelable: Boolean = false
+        ): KProgressHUD {
             return KProgressHUD.create(context)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel(message)
@@ -30,7 +32,7 @@ class DialogUtils {
 
         private lateinit var alertDialog: AlertDialog
 
-        fun showPopup(photo: Photo, dialogView:View) {
+        fun showPopup(photo: Photo, dialogView: View) {
 
             val image = dialogView.findViewById<ImageView>(R.id.photo)
             image.loadImage(photo.img_src)
@@ -48,12 +50,8 @@ class DialogUtils {
             landOfCar.text = photo.rover.landing_date
 
             val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(dialogView.context)
-            dialogBuilder.setOnDismissListener {  }
-            (object : DialogInterface.OnDismissListener {
-                override fun onDismiss(arg0: DialogInterface) {
-
-                }
-            })
+            dialogBuilder.setOnDismissListener { }
+            (DialogInterface.OnDismissListener { })
             dialogBuilder.setView(dialogView)
 
             alertDialog = dialogBuilder.create()

@@ -50,13 +50,19 @@ class OpportunityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener
         onObserveNewsList()
 
         imageItemAdapter = ImageItemAdapter(this)
-        binding.spItem.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        binding.spItem.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val spinnerSelectedItem = opportunityViewModel.cameraList.value?.get(position).toString()
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val spinnerSelectedItem =
+                    opportunityViewModel.cameraList.value?.get(position).toString()
                 opportunityViewModel.onSearchCamera(spinnerSelectedItem)
             }
 
@@ -95,7 +101,7 @@ class OpportunityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener
             }
         }
 
-        opportunityViewModel.cameraListData.observe(requireActivity()){
+        opportunityViewModel.cameraListData.observe(requireActivity()) {
             it.let {
                 imageItemAdapter?.setItems(it)
             }

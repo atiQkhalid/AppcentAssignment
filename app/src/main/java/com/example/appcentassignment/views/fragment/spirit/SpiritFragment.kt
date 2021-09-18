@@ -1,12 +1,12 @@
 package com.example.appcentassignment.views.fragment.spirit
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.R
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.appcentassignment.adapter.ImageItemAdapter
@@ -51,12 +51,17 @@ class SpiritFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
         onObserveNewsList()
 
         imageItemAdapter = ImageItemAdapter(this)
-        binding.spItem.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        binding.spItem.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 val spinnerSelectedItem = spiritViewModel.cameraList.value?.get(position).toString()
                 spiritViewModel.onSearchCamera(spinnerSelectedItem)
             }
@@ -98,7 +103,7 @@ class SpiritFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
             }
         }
 
-        spiritViewModel.cameraListData.observe(requireActivity()){
+        spiritViewModel.cameraListData.observe(requireActivity()) {
             it.let {
                 imageItemAdapter?.setItems(it)
             }

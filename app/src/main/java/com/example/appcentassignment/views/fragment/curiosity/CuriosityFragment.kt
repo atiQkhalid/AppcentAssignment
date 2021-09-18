@@ -1,6 +1,5 @@
 package com.example.appcentassignment.views.fragment.curiosity
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,7 @@ import com.example.appcentassignment.models.response.Photo
 import android.widget.ArrayAdapter
 import com.example.appcentassignment.utils.DialogUtils
 import android.widget.AdapterView
-
+import com.example.appcentassignment.R
 
 class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
     CuriosityViewModel.View {
@@ -90,11 +89,11 @@ class CuriosityFragment : BaseFragment(), ImageItemAdapter.OnItemClickListener,
         curiosityViewModel.cameraList.observe(viewLifecycleOwner) {
             it?.let {
                 val spinnerAdapter = ArrayAdapter(
-                    mainActivity,R.layout.simple_spinner_item, it
+                    mainActivity, android.R.layout.simple_spinner_item, it
                 )
 
                 spinnerAdapter.setDropDownViewResource(
-                    R.layout.simple_spinner_dropdown_item
+                    android.R.layout.simple_spinner_dropdown_item
                 )
                 binding.spItem.adapter = spinnerAdapter
             }

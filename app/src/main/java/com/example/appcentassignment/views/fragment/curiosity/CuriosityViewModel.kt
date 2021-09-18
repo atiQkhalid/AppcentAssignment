@@ -10,8 +10,6 @@ import com.example.appcentassignment.utils.Constants.API_KEY
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
 
@@ -27,8 +25,7 @@ class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
                 list.filter {
                     it.camera.full_name.contains(filterable)
                 }
-            }
-            else
+            } else
                 list
         }
     }
@@ -39,7 +36,7 @@ class CuriosityViewModel : BaseViewModel<CuriosityViewModel.View>() {
     }
 
     fun onSearchCamera(query: String) {
-            selectedCamera.value = query
+        selectedCamera.value = query
     }
 
     fun getCuriosityItemList() {

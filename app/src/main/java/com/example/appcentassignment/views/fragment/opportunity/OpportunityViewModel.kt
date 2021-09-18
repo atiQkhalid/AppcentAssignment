@@ -26,8 +26,7 @@ class OpportunityViewModel : BaseViewModel<OpportunityViewModel.View>() {
                 list.filter {
                     it.camera.full_name.contains(filterable)
                 }
-            }
-            else
+            } else
                 list
         }
     }
