@@ -7,9 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
 
-class ItemRepository : BaseRepository(), CoroutineScope {
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
+class ItemRepository : BaseRepository() {
 
     ////API End pints
     fun getItemList(keyword: String, apiKey: String) =
