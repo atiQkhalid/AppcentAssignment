@@ -3,9 +3,6 @@ package com.example.appcentassignment.repository
 import com.example.appcentassignment.base.BaseRepository
 import com.example.appcentassignment.network.RetrofitClient
 import com.example.appcentassignment.utils.Constants.BASE_URL
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlin.coroutines.CoroutineContext
 
 class ItemRepository : BaseRepository() {
 
