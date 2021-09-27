@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * The RetrofitClient.kt
- */
+ **/
 
 object RetrofitClient {
     private val REQUEST_TIMEOUT = 70
