@@ -9,6 +9,7 @@ import org.koin.java.KoinJavaComponent.inject
  * BaseViewModel.kt
  * An abstract Base View model to share common behavior and additionally clear navigation reference upon invalidation.
  */
+
 abstract class BaseViewModel<View> : ViewModel() {
     private var view: View? = null
     private var lifecycleOwner: LifecycleOwner? = null
