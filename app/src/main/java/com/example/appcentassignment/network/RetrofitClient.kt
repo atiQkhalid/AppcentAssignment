@@ -16,7 +16,7 @@ object RetrofitClient {
 
     fun getInterfaceService(baseUrl: String): ApiInterface {
 
-            initOkHttp()
+        initOkHttp()
 
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)

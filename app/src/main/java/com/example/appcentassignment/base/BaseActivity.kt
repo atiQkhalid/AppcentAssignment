@@ -1,4 +1,5 @@
 package com.example.appcentassignment.base
+
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appcentassignment.utils.InternetMonitor
 

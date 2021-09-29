@@ -1,6 +1,5 @@
 package com.example.appcentassignment.extenssions
 
-import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
