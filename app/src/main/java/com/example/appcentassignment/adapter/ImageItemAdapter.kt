@@ -33,7 +33,7 @@ class ImageItemAdapter(private val onItemClickListener: OnItemClickListener) :
                 .inflate(R.layout.item_list, parent, false)
         )
     }
-
+    
     override fun onBindViewHolder(holder: ImageItemAdapter.MyViewHolder, position: Int) {
         val card = imageItemList[position]
         holder.image.loadImage(card.img_src)
