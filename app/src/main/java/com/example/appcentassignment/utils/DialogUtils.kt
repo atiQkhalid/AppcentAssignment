@@ -14,10 +14,6 @@ import com.kaopiz.kprogresshud.KProgressHUD
 class DialogUtils {
     companion object {
 
-        fun showProgressDialog(context: Context): KProgressHUD {
-            return showProgressDialog(context, "")
-        }
-
         fun showProgressDialog(
             context: Context,
             message: String = "please wait",
